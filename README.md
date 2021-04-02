@@ -66,7 +66,7 @@ When looking at the more predictive features, we can see some trends develop wit
 
 <img src="images/number_of_startups.png" width="650"/>
 
-When looking at which categories tend to be more invted in, we can see clear trends in biotechnology and softwhere. This may be due to the
+When looking at which categories tend to be more invested in, we can see clear trends in biotechnology and software. This may be due to the ROI in these industries, or their stability.
 <img src="images/top_successful_cats.png" width="650"/>
 
 

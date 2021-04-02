@@ -9,7 +9,7 @@
 ___
 
 __Abstract:__
-Data from [https://data.world/fiftin/crunchbase-2015] consists of 66,368 rows (companies) with 14 columns primarily describing funding and location. This dataset was combined with GDP information [https://hub.arcgis.com](https://hub.arcgis.com/datasets/a2a8826c4ba44f89a684000fe7c05b8c_0/data?geometry=-166.940%2C29.270%2C167.571%2C67.358&page=5), population statistics [https://simplemaps.com/data](https://simplemaps.com/data/us-zips), and education data [https://data.world/education/university-rankings-2017]. After conducting an exploratory analysis, I have found a predictive relationship between select features and success or failure of a startup.
+Data from [https://data.world/fiftin/crunchbase-2015] consists of 66,368 rows (companies) with 14 columns primarily describing funding and location. The data starts from 1960 and goes to 2015. This dataset was combined with GDP information [https://hub.arcgis.com](https://hub.arcgis.com/datasets/a2a8826c4ba44f89a684000fe7c05b8c_0/data?geometry=-166.940%2C29.270%2C167.571%2C67.358&page=5), population statistics [https://simplemaps.com/data](https://simplemaps.com/data/us-zips), and education data [https://data.world/education/university-rankings-2017]. After conducting an exploratory analysis, I have found a predictive relationship between select features and success or failure of a startup.
 
 
 __Results:__
@@ -39,7 +39,7 @@ Four separate ```.csv``` files were used in data collection. The primary dataset
 
 Primary modeling was conducted with Logistic Regression and Random Forest Classifier. These models were selected to be used in tandem. Logistic Regression is an easily interpretable model giving insightful coefficients, while the Random Forest model provides strong predictive power. It is important to note, all models were crossfold validated and tuned for recall as the primary measure.
 
-Recall was selected as it emphasizes in lowering the false negative rate. This is important because a false positive results in missed opportunity (predicting a business will fail but it succeeds), but a false negative results in financial loss for an investment firm.
+Recall was selected as it emphasizes in lowering the false negative rate. This is important because a false positive results in missed opportunity (predicting a business will fail but it succeeds), but a false negative results in financial loss for an investment firm. If an investment firm is more concerned about opportunity loss, model tuning can be adjusted to emphasize false positives.
 
 
 
@@ -60,6 +60,14 @@ When looking at the top 10 most successful cities, an interesting pattern emerge
 This grouping can also be seen in an area such as San Francisco's Bay Area. There are clusters that are more successful, while other clusters have more failures. This again speaks to the importance of location. According to modeling conducted, this can be partially attributed to how much income a city has, how dense the population is, and the average funding received for companies in an area. Further analysis on other features should be conducted.
 
 <img src="images/bay_area_heatmap.png" width="650"/>
+
+When looking at the more predictive features, we can see some trends develop with some outliers. Looking at the number of startups in a city (in the SF Bay area for example) as a predictive feature, it is apparent it can make a difference in some cities. Mountain View serves as a clear outlier, however San Jose, San Francisco, and Redwood city hold positive to this trend. To confirm this further, a deeper analysis should be conducted on each city.
+
+
+<img src="images/number_of_startups.png" width="650"/>
+
+When looking at which categories tend to be more invted in, we can see clear trends in biotechnology and softwhere. This may be due to the
+<img src="images/top_successful_cats.png" width="650"/>
 
 
 ___

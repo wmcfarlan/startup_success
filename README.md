@@ -1,4 +1,4 @@
-<a href="https://www.crunchbase.com"><img src="images/cb_logo.png" height=70%  width=70%></a>
+<a href="https://www.crunchbase.com"><img src="images/cb_logo.png" height=40%  width=40%></a>
 
 # Startup Success and Predictive Modeling 
 <br>

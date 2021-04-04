@@ -18,7 +18,6 @@ After conducting EDA and predictive modeling, Logistic Regression emphasized sta
 
 Using Random Forest as a more robust predictive model, permutation feature importance reveals different feature importance. Startups do better in cities with higher population density. Furthermore, the more financial backing a location has the higher the odds a company will succeed become. Most interestingly, cities with higher numbers of unique industries also perform better. These features could be speaking to the importance of a diverse and supported ecosystem, or they could all be saying startups in cities perform better. More study will be needed to make a conclusion.
 
-<img src="images/rf_permutation_feat_imp.png" width="650"/>
 
 
 ___

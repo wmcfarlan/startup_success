@@ -9,13 +9,16 @@
 ___
 
 __Abstract:__
-Data from [https://data.world/fiftin/crunchbase-2015] consists of 66,368 rows (companies) with 14 columns primarily describing funding and location. The data starts from 1960 and goes to 2015. This dataset was combined with GDP information [https://hub.arcgis.com](https://hub.arcgis.com/datasets/a2a8826c4ba44f89a684000fe7c05b8c_0/data?geometry=-166.940%2C29.270%2C167.571%2C67.358&page=5), population statistics [https://simplemaps.com/data](https://simplemaps.com/data/us-zips), and education data [https://data.world/education/university-rankings-2017]. After conducting an exploratory analysis, I have found a predictive relationship between select features and success or failure of a startup.
+Startup Data, collected from [https://data.world]([https://data.world/fiftin/crunchbase-2015) consists of 66,368 rows (companies) with 14 columns primarily describing funding and location. The data starts from 1960 and goes to 2015. This dataset was combined with GDP information [https://hub.arcgis.com](https://hub.arcgis.com/datasets/a2a8826c4ba44f89a684000fe7c05b8c_0/data?geometry=-166.940%2C29.270%2C167.571%2C67.358&page=5), population statistics [https://simplemaps.com/data](https://simplemaps.com/data/us-zips), and education data [https://data.world/education/university-rankings-2017]. After conducting an exploratory analysis, a predictive modeling revealed key relationships between select features and a startup's success.
 
 
 __Results:__
-After conducting EDA and modeling, Logistic Regression speaks to startup categories such as big data, realestate, and medicine to be important to success. Less obvious features such as the length of a company name or their url also play a role. Interestingly, the number of startups in a city and the city's overall population plays a role in success as well.
+After conducting EDA and predictive modeling, Logistic Regression emphasized startup categories such as big data, realestate, and biotech to be safe investments. Less obvious features such as the length of a company name or their url also play a role, and it can be speculated as to why. Perhaps companies with more financial reach can secure shorter urls and names. Interestingly, the number of startups in a city and the city's overall population plays a role in success. This indicates the importance of location and speaks to a more complex success ecosystem within some cities. Optimized Logistic Regression achieved a recall score of 69%.
 
-Random Forest found importance with the population of areas, how much finance was given to a specific company, and the average finance of companies in regions. While this does not speak to the why of importance, it does show that location is an important factor.
+
+Using Random Forest as a more robust predictive model, permutation feature importance reveals different feature importance. Startups do better in cities with higher population density. Furthermore, the more financial backing a location has the higher the odds a company will succeed become. Most interestingly, cities with higher numbers of unique industries also perform better. These features could be speaking to the importance of a diverse and supported ecosystem, or they could all be saying startups in cities perform better. More study will be needed to make a conclusion.
+
+<img src="images/rf_permutation_feat_imp.png" width="650"/>
 
 
 ___
@@ -46,36 +49,39 @@ Recall was selected as it emphasizes in lowering the false negative rate. This i
 ___
 # Results
 
-After balancing classes with SMOTE, the baseline classifier model gave a 50% accuracy score. Logistic Regression resulted in a model with around 70% recall score. Furthermore, logistic regression revealed an important relationship in company success: company types more likely to succeed and city population statistics. This may seem obvious, but this tells an important story--successful ecosystems build successful companies. In short: location matters!
+After balancing classes with SMOTE, the baseline classifier model gave a 50% accuracy score. Logistic Regression resulted in a model with around 69% recall score. Logistic Regression was selected for it's interpretability. Looking at the coefficients, it can be seen some categories of startups are safer to invest in than others. Logistic Regression also reveals the importance of population density and the number of startups in a city as key predictors of success. These two factors are important because they talk about the importance of location. To discover more about the features of location, a more granular study will need to be conducted.
 
-A random forest classifier was also built and optimized with recall in mind. Recall was selected as the primary metric to reduce loss of investment. Once tuned, this model has a recall score of 98%. When looking at the feature importances of this model, some interesting potential relationships are revealed.
+<img src="images/log_reg_feat_imp.png" width="650"/>
+
+An optimized Random Forest Classifier was used as the more robust predictive model. This model was optimized to provide a high recall score. Recall was selected as the primary metric to reduce loss of investment. Once tuned, this model has a recall score of 98%. When looking at the feature importances of this model, some interesting potential relationships are revealed. Features seem to be grouped in terms of funding, population, and the count of startups in a location. Once again, these features seem to be talking about the importance of location to success, but they may all be saying the same thing: larger cities do better. This makes sense as larger cities have more funding, more education, and a diverse workforce to draw upon. However to make conclusive statements, more study is needed.
+
 <img src="images/fixed_2.png" width="650"/>
 
-Information about city populations and average funding in the city plays a large role. This hints at the importance of location. After further EDA, it seems like larger cities with more financial backing is important to success.
 
-When looking at the top 10 most successful cities, an interesting pattern emerges. There seems to be an importance in company grouping. This revals company insight. There is a reason they are grouping. Further investigation would be needed to explain why.
+Looking at the top 10 most successful locations, interesting insight can be gained. These locations are not locations someone would typically think of as successful. And that in part is to how they were selected. Locations with 100% success rate were not used, as these were locations with 1 to 2 different startups that had not failed. But larger cities such as San Francisco are not represented because they have more startups in their area, and thus are not around the 95% mark. These areas can then be seen as the top 10 upcoming areas. They all have roughly 100 to 50 different startups in their location and all have a high success rate.
+
 <img src="images/top_successful_regions.png" width="650"/>
+
+When looking at Tucson specifically for example, we can see another interesting insight. Likewise companies cluster together. Tucson has a high number of biotechnology in the region, and this happens to be one of the most successful company types to predict success according to the Logistic Regression model. This pattern can be seen in other locations as well. Likewise companies cluster and this seems to create more success than isolated industries.
+
 <img src="images/tucson_cat.png" width="650"/>
 
-This grouping can also be seen in an area such as San Francisco's Bay Area. There are clusters that are more successful, while other clusters have more failures. This again speaks to the importance of location. According to modeling conducted, this can be partially attributed to how much income a city has, how dense the population is, and the average funding received for companies in an area. Further analysis on other features should be conducted.
+The importance of location can also be seen. When looking at a heatmap of success of the bay area, clear areas of success and failure can be seen. This does not reveal why these locations are better than others, but shows the importance of location in terms of success. It can also be argued that successful companies start off in one location and move to more successful areas later. Or perhaps these are companies being funded by companies like Google or Facebook and are less likely to fail as a result. More investigation is needed.
 
 <img src="images/bay_area_heatmap.png" width="650"/>
 
-When looking at the more predictive features, we can see some trends develop with some outliers. Looking at the number of startups in a city (in the SF Bay area for example) as a predictive feature, it is apparent it can make a difference in some cities. Mountain View serves as a clear outlier, however San Jose, San Francisco, and Redwood city hold positive to this trend. To confirm this further, a deeper analysis should be conducted on each city.
+When looking at the predictive features revealed in modeling, we can see some trends develop, but also some outliers that do not fit these trends. The below graph demonstrates outliers in Mountain View, and the skew of larger cities such as San Francisco. Success is an interaction of features, and narrowing down that statement to a handful of features does not grasp the complexity properly.
 
 
 <img src="images/number_of_startups.png" width="650"/>
 
-When looking at which categories tend to be more invested in, we can see clear trends in biotechnology and software. This may be due to the ROI in these industries, or their stability.
-<img src="images/top_successful_cats.png" width="650"/>
-
 
 ___
 # An Interaction of Systems
-My final conclusion is the importance of ecosystems. Some locations do better than others. This indicates there must be some features about these areas that contribute to success. Further work should be done on a more granular scale. Some features to potentially add in the future include non-startup businesses, more precise geolocation information per company, more precise city statistics.
+My final conclusion is the importance of ecosystems. Some locations do better than others. This indicates there must be some features about these areas that contribute to success. Further work should be done on a more granular scale. Finding the select features that create this success ecosystem can help investment strategy as well as many other industries.
 
 
 ___
 ## Limitations
-It is important to note correlation doesn't equal causation. Success of a company can depend on many different micro and macro interactions. The data in this study was more macro and did not have specifics on each individual company. What this study did conclude, is some sort of relationship and patterns in location. This is important because it indicates more research is necessary.
+It is important to note the limitations of this study. Data collected was not as granular as it could have been, and thus predictions are rough. Success of a company can depend on many different micro and macro interactions. Further research and study will be required to learn more about what makes a location successful.
 ___

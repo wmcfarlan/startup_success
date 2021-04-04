@@ -37,9 +37,9 @@ ___
 ___
 # Analysis methods
 
-Four separate ```.csv``` files were used in data collection. The primary dataset pulled from Data.World and consists of over 63 thousand different startup businesses from many different regions from around the world. For my study, I narrowed companies down to the United States only. GDP information was pulled from Arcgis, US city population statistics were pulled from Simple Maps, and education data was pulled from a secondary source found on Data.World. Primary data analysis was conducted using ```pandas``` and ```numpy```. Data visualization was conducted with ```matplotlib```, and ```plotly```.
+Four separate ```.csv``` files were used in data collection. The primary dataset pulled from Data.World and consists of over 63 thousand different startup businesses from many different regions from around the world. For my study, I narrowed companies down to the United States only. GDP information was pulled from Arcgis, US city population statistics were pulled from Simple Maps, and education data was pulled from a secondary source found on Data.World. Primary data analysis was conducted using ```pandas``` and ```numpy```. Data visualization was conducted with ```matplotlib```, ```seaborn```, and ```plotly```.
 
-Primary modeling was conducted with Logistic Regression and Random Forest Classifier. These models were selected to be used in tandem. Logistic Regression is an easily interpretable model giving insightful coefficients, while the Random Forest model provides strong predictive power. It is important to note, all models were crossfold validated and tuned for recall as the primary measure.
+Primary modeling was conducted with ```sklearn``` Logistic Regression and Random Forest Classifier. These models were selected to be used in tandem. Logistic Regression is an easily interpretable model giving insightful coefficients, while the Random Forest model provides strong predictive power. It is important to note, all models were crossfold validated and tuned for recall as the primary measure.
 
 Recall was selected as it emphasizes in lowering the false negative rate. This is important because a false positive results in missed opportunity (predicting a business will fail but it succeeds), but a false negative results in financial loss for an investment firm. If an investment firm is more concerned about opportunity loss, model tuning can be adjusted to emphasize false positives.
 
@@ -48,7 +48,7 @@ Recall was selected as it emphasizes in lowering the false negative rate. This i
 ___
 # Results
 
-After balancing classes with SMOTE, the baseline classifier model gave a 50% accuracy score. Logistic Regression resulted in a model with around 69% recall score. Logistic Regression was selected for it's interpretability. Looking at the coefficients, it can be seen some categories of startups are safer to invest in than others. Logistic Regression also reveals the importance of population density and the number of startups in a city as key predictors of success. These two factors are important because they talk about the importance of location. To discover more about the features of location, a more granular study will need to be conducted.
+After balancing classes with SMOTE, minimizing outliers, and reducing multicollinearity, the baseline classifier model gave a 50% accuracy score. Logistic Regression resulted in a model with around 69% recall score. Logistic Regression was selected for it's interpretability. Looking at the coefficients, it can be seen some categories of startups are safer to invest in than others. Logistic Regression also reveals the importance of population density and the number of startups in a city as key predictors of success. These two factors are important because they talk about the importance of location. To discover more about the features of location, a more granular study will need to be conducted.
 
 <img src="images/log_reg_feat_imp.png" width="650"/>
 
@@ -81,6 +81,6 @@ My final conclusion is the importance of ecosystems. Some locations do better th
 
 
 ___
-## Limitations
+## Limitations and Future Work
 It is important to note the limitations of this study. Data collected was not as granular as it could have been, and thus predictions are rough. Success of a company can depend on many different micro and macro interactions. Further research and study will be required to learn more about what makes a location successful.
 ___
